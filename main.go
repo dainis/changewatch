@@ -4,7 +4,6 @@ import (
 	"github.com/fsnotify/fsnotify"
 	"log"
 	"os"
-	"os/exec"
 	"path/filepath"
 	"strings"
 )
@@ -16,7 +15,7 @@ func main() {
 	}
 
 	watcher, err := fsnotify.NewWatcher()
-
+	execLoop := NewExecLoop(os.Args[2], os.Args[3:])
 	done := make(chan bool)
 
 	if err != nil {
@@ -47,17 +46,8 @@ func main() {
 					watcher.Remove(event.Name)
 				}
 
-				cmd := exec.Command(os.Args[2], os.Args[3:]...)
+				execLoop.Exec()
 
-				output, err := cmd.CombinedOutput()
-
-				if err != nil {
-					log.Printf("\x1b[1;31mFailed to execute command %s\x1b[0m", err)
-					log.Printf("\x1b[0;31mOutput : \n\x1b[0m%s\n", string(output))
-				} else {
-					log.Printf("\x1b[1;32mWatch command executed\x1b[0m")
-					log.Printf("\x1b[0;32mOutput : \n\x1b[0m%s\n", string(output))
-				}
 			case err := <-watcher.Errors:
 				log.Printf("Got failure %s", err)
 			}
