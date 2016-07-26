@@ -37,13 +37,13 @@ func main() {
 					if err != nil {
 						log.Printf("Failed to stat changed thing %s", err)
 					} else if stats.IsDir() {
-						log.Printf("\x1b[0;34mWill add dir to watch %s\x1b[0m", event.Name)
+						log.Printf("\x1b[0;34mWill add dir to watch `%s`\x1b[0m", event.Name)
 						watcher.Add(event.Name)
 					}
 				}
 
 				if event.Op&fsnotify.Remove == fsnotify.Remove {
-					log.Printf("\x1b[0;34mWill remove watch path %s\x1b[0m", event.Name)
+					log.Printf("\x1b[0;34mWill remove watch path `%s`\x1b[0m", event.Name)
 					watcher.Remove(event.Name)
 				}
 
@@ -67,7 +67,7 @@ func main() {
 	log.Printf("Will watch %s with command %s", os.Args[1], strings.Join(os.Args[2:], " "))
 
 	err = watcher.Add(os.Args[1])
-	log.Printf("Adding path %s", os.Args[1])
+	log.Printf("\x1b[0;34mAdding path `%s`\x1b[0m", os.Args[1])
 
 	if err != nil {
 		log.Fatalf("Failed to add path to watch %s", err)
@@ -95,7 +95,7 @@ func addRecursively(watcher *fsnotify.Watcher, path string) {
 						fullPath := filepath.Join(path, sub.Name())
 						paths = append(paths, fullPath)
 						watcher.Add(fullPath)
-						log.Printf("Adding path %s", fullPath)
+						log.Printf("\x1b[0;34mAdding path `%s`\x1b[0m", fullPath)
 					}
 				}
 			}
