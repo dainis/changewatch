@@ -1,0 +1,19 @@
+{
+	"comment": "",
+	"ignore": "test",
+	"package": [
+		{
+			"checksumSHA1": "xgjI2W3RGiQwNlxsOW2V9fJ9kaM=",
+			"path": "github.com/fsnotify/fsnotify",
+			"revision": "a8a77c9133d2d6fd8334f3260d06f60e8d80a5fb",
+			"revisionTime": "2016-06-29T01:11:04Z"
+		},
+		{
+			"checksumSHA1": "8fD/im5Kwvy3JgmxulDTambmE8w=",
+			"path": "golang.org/x/sys/unix",
+			"revision": "a646d33e2ee3172a661fc09bca23bb4889a41bc8",
+			"revisionTime": "2016-07-15T05:43:45Z"
+		}
+	],
+	"rootPath": "github.com/dainis/changewatch"
+}

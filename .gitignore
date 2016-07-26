@@ -1,0 +1,4 @@
+test_run
+vendor/*
+bin
+!vendor/vendor.json
